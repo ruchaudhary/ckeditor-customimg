@@ -1,9 +1,11 @@
 /**
  * Custom image uplaod plugin for CKEditor.
  * @developed by Ruchi Chaudhary(ruchichaudhary5@gmail.com)
+ * Description: Yon can add custom image plugin and also limit the number of images uplaod in ckeditor by setting the value NUM_IMAGE
  */
 
 var flag = 0;
+var NUM_IMAGE = 3;
 var uhtml = '<div id="myDiv" style="position:relative;"><h3>Enter Image URL or Choose Image</h3><form action="" name="editor_link_form" id="editor_link_form"><div style="padding:0; margin: 15px 0;"><label for="content">URL: </label><input type="hidden" name="name" value="link"><input type="text" placeholder="Enter image url.." name="content" id="rcontent_image" /></div><div style="padding:0; margin:32px 0 10px;"><label class="l-btn" for="e-image_image">Choose Image</label><input id="e-image_image" class="e-image_image" type="file" accept="image/*" onchange="uploadcustimage(this)" value="" name="e-image_image"><span class="editor-load"><img width="28" height="28" src="/assets/images/ajax_loader.gif"></span></div></form></div>';
 
 CKEDITOR.plugins.add('custimage',{
@@ -34,7 +36,7 @@ CKEDITOR.plugins.add('custimage',{
 			if(cmdName == 'custimage'){	
 				var d = editor.getData();
 				var nImg = $("<div>" +d +"</div>").find("img").length;
-				if(nImg >= 3){				
+				if(nImg >= NUM_IMAGE){				
 					flag = 1;
 				}else{
 					flag = 0;
